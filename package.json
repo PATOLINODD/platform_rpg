@@ -1,0 +1,19 @@
+{
+  "name": "plataforma_rpg",
+  "version": "1.0.0",
+  "description": "platform to play rpg online, like a rpg table. Platform to create card characters and do fight. That platform is to process data when you init fight against bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PATOLINODD/platform_rpg.git"
+  },
+  "author": "PATOLINODD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PATOLINODD/platform_rpg/issues"
+  },
+  "homepage": "https://github.com/PATOLINODD/platform_rpg#readme"
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<link rel="stylesheet" href="index.css"></link>
+		</head>
+		<body>
+			<h1>
+				OLA RPG!
+			</h1>
+			<input type="txt" id="name">
+			<input type="txt" id="atk">
+			<input type="txt" id="defense">
+			<input type="txt" id="selected">
+			<input type="file" id="image" accept="image/*" onchange="loadfile(event)">
+			<input type="submit" id="submit" value="create character" onclick="factory()">
+			<div id="card">
+				<img id="imageResult"/>
+			</div>
+		<script src="index.js" type="text/javascript"></script>
+		</body>
+	</html>
+</html>
