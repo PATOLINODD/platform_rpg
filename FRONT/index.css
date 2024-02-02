@@ -1,3 +1,81 @@
-h1 {
-	color: red;
+.backgroundgif {
+	content: '';
+	background-image: url('../resources/gifs/bigmoon.gif');  
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	background-position: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-attachment: fixed;
+	z-index: -2;
+}
+
+body, html {
+	height: 100%;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	cursor: auto;
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+}
+
+
+.flex-column-center {
+	display: flex;
+	margin: 0;
+	flex-flow: column wrap;
+	justify-self: center;
+}
+
+.g {
+	width: 50%;
+	height: 50%;
+}
+
+
+.form-desktop {
+	background-color: none;
+	color: white;
+}
+
+.form-mobile {
+	display: none;
+}
+
+.characterImage {
+	z-index: -1;
+	content: '';
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: cover;
+	opacity: 0.3;
+	background-attachment: fixed;
+}
+
+@media screen and (max-width: 550px) {
+
+	.form-mobile {
+		display: block;
+		background-color: none;
+		color: white;
+	}
+
+	.form-desktop {
+		display: none;
+	}
 }

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FRONT",
+    "\\FRONT\\src",
+    "\\FRONT\\src\\newcharacter",
+    "\\FRONT\\src\\userpage",
+    "\\resources\\gifs",
+    "\\resources\\images",
+    "\\src",
+    "\\src\\controller",
+    "\\src\\routes"
+  ],
+  "SelectedNode": "\\src\\controller\\characterController.js",
+  "PreviewInSolutionExplorer": false
+}

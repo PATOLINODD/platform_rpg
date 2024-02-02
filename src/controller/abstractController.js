@@ -12,7 +12,7 @@ module.exports = class AbstractController {
 	save = async (body) => {
 		try{
 			const model = await this.db.create(body);
-			if(model instanceof this.db){
+			if(model instanceof this.db) {
 				this.msg.code = 200;
 				this.msg.error = false;
 				this.msg.result = "success";
@@ -22,11 +22,10 @@ module.exports = class AbstractController {
 			this.msg.code = 400;
 			this.msg.result = "error";
 			this.msg.msg = "Model was not created";
-			return this.msg;
-		} catch(error){
+		} catch(error) {
 			this.msg.result = error;
-			return this.msg;
 		}
+		return this.msg;
 	}
 	list = async () => {
 		try {
@@ -41,34 +40,54 @@ module.exports = class AbstractController {
 			this.msg.code = 400;
 			this.msg.result = "error";
 			this.msg.msg = "Nothing to list. The database is empty";
-			return this.msg;
 		}catch(error){
 			this.msg.result = error;
-			return this.msg;
 		}
+		return this.msg;
 	}
 	getByID = async (id) => {
 		try {
 			const model = await this.db.findByPk(id);
-			if(model !== null){
+			if(model instanceof this.db){
 				this.msg.code = 200;
 				this.msg.error = false;
 				this.msg.result = model;
 				this.msg.msg = "Success to get model";
-				return msg;
+				return this.msg;
 			}
 			this.msg.code = 400;
 			this.msg.result = "error";
 			this.msg.msg = "Nothing to get. Verify the data and try again";
-			return msg;
 		}catch(error){
 			this.msg.result = error;
-			return this.msg;
 		}
+		return this.msg;
 	}
 	updateByID = async (body, id) => {
 		try {
 			const model = await this.db.update(body, {
+				where: { id: id }
+			});
+			console.log(`model result of update: `, model);
+			if(model !== null){
+				this.msg.code = 200;
+				this.msg.error = false;
+				this.msg.result = "success";
+				this.msg.msg = "Update successfully";
+				return this.msg;
+			}
+			this.msg.code = 400;
+			this.msg.result = "error";
+			this.msg.msg = "It didn't update successfully";
+		}catch(error){
+			this.msg.result = error;
+		}
+		return this.msg;
+	}
+	
+	delete = async (id) => {
+		try {
+			const model = await this.db.destroy({
 				where: {id}
 			});
 			if(model !== null){
@@ -81,21 +100,10 @@ module.exports = class AbstractController {
 			this.msg.code = 400;
 			this.msg.result = "error";
 			this.msg.msg = "It didn't update successfully";
-			return this.msg;
-		}catch(error){
+		} catch(error){
 			this.msg.result = error;
-			return this.msg;
 		}
-	}
-	
-	delete = async (id) => {
-		try {
-			const model = await this.db.destroy({
-				where: {id}
-			});
-		} catch(error) {
-			
-		}
+		return this.msg;
 	}
 	
 }
