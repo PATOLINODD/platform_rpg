@@ -21,10 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("WebSocket connection closed");
   });
 
-  saveCharacter.addEventListener("click", function (event) {
-    event.preventDefault();
-    saveNewCharacter();
-  });
+  if (saveCharacter !== null) {
+    saveCharacter.addEventListener("click", function (event) {
+      event.preventDefault();
+      saveNewCharacter();
+    });
+  }
 
   function getListCharacters() {
     const message = {

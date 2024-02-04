@@ -9,36 +9,36 @@
 		</head>
 		<body>
 			<div class="backgroundgif"></div>
-			<div class="characterImage"></div>
+
 			<!-- GET IMAGE GIF TO PUT IN BACKGROUND -->
-			<form method="post" class="form-desktop position-absolute top-50 start-50 translate-middle">
+			<form method="post" id="form" class="form-desktop position-absolute top-50 start-50 translate-middle">
 				<div class="mb-3" id="form-group">
 					<label for="name" class="form-label">
 						Personagem:
 					</label>
-					<input type="text" id="name" name="name" class="form-control bg-secondary-subtle" onchange="loadImageByName(this)">
+					<input type="text" id="name" name="name" class="form-control bg-secondary-subtle" onchange="handleName(this)">
 					<label for="password" class="form-label">
 						Senha:
 					</label>
-					<input type="password" id="password" name="password" class="form-control bg-secondary-subtle">
+					<input type="password" id="password" name="password" class="form-control bg-secondary-subtle" onchange="getInput(this)">
 				</div>
 				<div class="d-grid gap-2">
-					<button type="button" class="btn btn-success" onclick="continueHistory()"> Continuar Historia </button>
+					<button type="submit" class="btn btn-success" onclick="continueHistory()"> Continuar Historia </button>
 					<button type="button" class="btn btn-warning" onclick="newCharacter()" style="color: white"> Criar Novo Personagem </button>
 				</div>
 
 			</form>
 
-			<form method="post" class="form-mobile container" style="margin: 0; padding-top: 11.5rem">
+			<form method="post" id="form" class="form-mobile container" style="margin: 0; padding-top: 11.5rem">
 				<div class="mb-3">
 					<label for="name" class="form-label">
 						Personagem:
 					</label>
-					<input type="text" id="name" name="name" class="form-control bg-secondary-subtle" onchange="loadImageByName(this)">
+					<input type="text" id="name" name="name" class="form-control bg-secondary-subtle" onchange="handleName(this)">
 					<label for="password" class="form-label">
 						Senha:
 					</label>
-					<input type="password" id="password" name="password" class="form-control bg-secondary-subtle">
+					<input type="password" id="password" name="password" class="form-control bg-secondary-subtle" onchange="getInput(this)">
 				</div>
 				<div class="d-grid gap-2">
 					<button type="button" class="btn btn-success" onclick="continueHistory()"> Continuar Historia </button>
