@@ -8,88 +8,59 @@ class CharacterController extends AbstractController {
 
   saveCharacter = async (data) => {
     console.log("Entering in method saveCharacter(data)");
-    let msg = {};
     try {
-      msg = await this.save(data);
-      if (!msg.error) {
-        return msg;
+      await this.save(data);
+      if (!this.msg.error) {
+        return this.msg;
       }
-      msg.error = true;
-      msg.code = 400;
-      msg.result = null;
-      msg.msg = "Bad Request. Verify the datas and try again!";
+      return this.msg;
     } catch (error) {
-      this.msg.error = true;
-      this.msg.code = 500;
-      this.msg.msg = "Internal error. Try again later!";
-      this.msg.result = error.message;
       console.error(this.msg);
     }
-    return msg;
+    return this.msg;
   };
   listCharacters = async () => {
     console.log("Entering in method listCharacters()");
-    let msg = {};
     try {
-      msg = await this.list();
-      if (!msg.error) {
-        return msg;
+      await this.list();
+      if (!this.msg.error) {
+        return this.msg;
       }
-      msg.error = true;
-      msg.code = 400;
-      msg.result = null;
-      msg.msg = "Bad Request. Verify the datas and try again!";
+      return this.msg;
     } catch (error) {
-      this.msg.error = true;
-      this.msg.code = 500;
-      this.msg.msg = "Internal error. Try again later!";
-      this.msg.result = error.message;
       console.error(this.msg);
     }
-    return msg;
+    return this.msg;
   };
 
-  getCharacterByID = async (id) => {
-    console.log("Entering in method getCharacterByID(id)");
-    let msg = {};
+  getUserByNamePass = async (login) => {
+    console.log("Entering in method getUserByNamePass(login)");
     try {
-      msg = await this.getByID(id);
-      if (!msg.error) {
-        return msg;
+      const where = {
+        name: login.name,
+        password: login.password
       }
-      msg.error = true;
-      msg.code = 400;
-      msg.result = null;
-      msg.msg = "Bad Request. Verify the datas and try again!";
+      await this.getByWhere(where);
+      if (!this.msg.error) {
+        return this.msg;
+      }
+      return this.msg;
     } catch (error) {
-      this.msg.error = true;
-      this.msg.code = 500;
-      this.msg.msg = "Internal error. Try again later!";
-      this.msg.result = error.message;
       console.error(this.msg);
     }
-    return msg;
+    return this.msg;
   };
-  updateCharacterByID = async (data, id) => {
+  updateCharacterByID = async (data) => {
     console.log("Entering in method updateCharacterByID(data, id)");
-    let msg = {};
     try {
-      msg = await this.updateByID(req.body, id);
-      if (!msg.error) {
-        return msg;
+      await this.updateByID(data, data.id);
+      if (!this.msg.error) {
+        return this.msg;
       }
-      msg.error = true;
-      msg.code = 400;
-      msg.result = null;
-      msg.msg = "Bad Request. Verify the datas and try again!";
     } catch (error) {
-      this.msg.error = true;
-      this.msg.code = 500;
-      this.msg.msg = "Internal error. Try again later!";
-      this.msg.result = error.message;
       console.error(this.msg);
     }
-    return msg;
+    return this.msg;
   };
 }
 

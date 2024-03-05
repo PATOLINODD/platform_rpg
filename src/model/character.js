@@ -85,6 +85,9 @@ const Characters = sequelize.define("Character", {
 	},
 	passive: {
 		type: DataTypes.TEXT,
+	},
+	password: {
+		type: DataTypes.STRING(80)
 	}
 }, {
   modelName: 'Character', // We need to choose the model name

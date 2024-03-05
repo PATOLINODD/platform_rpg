@@ -1,22 +1,25 @@
-
 const login = {
-	name: "",
-	password: ""
+  name: "",
+  password: "",
 };
 
 function continueHistory() {
-	window.location.href = "./src/party/party.html";
+	const message = { 
+		path: "/getUserByNamePass",
+		data: login,
+	}
+	socket.send(JSON.stringify(message));
 }
 
 function newCharacter() {
-	//redirect user to another page;
-	window.location.href = "./src/newcharacter/newCharacter.html";
+  //redirect user to another page;
+  window.location.href = "./src/newcharacter/newCharacter.html";
 }
 
-function handleName(input){
-	loadImageByName(input);
-	getInput(input);
+function handleName(input) {
+  loadImageByName(input);
+  getInput(input);
 }
-function getInput(input){
-	login[input.name] = input.value;
+function getInput(input) {
+  login[input.name] = input.value;
 }

@@ -1,16 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const saveCharacter = document.getElementById("saveCharacter");
+  const saveCharacterDesktop = document.getElementById("saveCharacterDesktop");
+  const saveCharacterMobile = document.getElementById("saveCharacterMobile");
 
   const socket = new WebSocket("ws://localhost:6969");
 
   socket.addEventListener("open", function (event) {
     console.log("WebSocket connection opened");
-    getListCharacters();
   });
 
   socket.addEventListener("message", function (event) {
     console.log("Received message from server:");
-    console.log(event.data);
+    const msg = JSON.parse(event.data);
+    if(!msg.error)
+    {
+      window.location.href = "../party/party.html";
+      return;
+    } 
+    alert("Isso não foi culpa sua. Recarregue a pagina e tente de novo!");
   });
 
   socket.addEventListener("error", function (event) {
@@ -21,12 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("WebSocket connection closed");
   });
 
-  if (saveCharacter !== null) {
-    saveCharacter.addEventListener("click", function (event) {
-      event.preventDefault();
-      saveNewCharacter();
-    });
-  }
+  saveCharacterDesktop?.addEventListener("click", function (event) {
+    event.preventDefault();
+    saveNewCharacter();
+  });
+  saveCharacterMobile?.addEventListener("click", function (event) {
+    event.preventDefault();
+    saveNewCharacter();
+  });
+
+
 
   function getListCharacters() {
     const message = {

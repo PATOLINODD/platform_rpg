@@ -10,7 +10,7 @@ routes(wss);
 (async () => {
 	try {
 		await db.sync();
-		//await db.drop();
+		// await db.drop();
 		console.log('all tables was synchronized');
 	}
 	catch (error) {
