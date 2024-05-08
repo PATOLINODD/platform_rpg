@@ -1,0 +1,14 @@
+  
+  
+  <div [class]="mainClass">
+    <label [htmlFor]="controlName" [attr.class]="classLabel">{{ labelName }}</label>
+    <input type="text"
+        class="form-control"
+        [class]="classInput"
+        [id]="controlName"
+        [formGroup]="formGroup"
+        [name]="controlName"
+        (change)="change($event)"
+        [required]="isRequired"
+        OlnyNumbers>
+</div>

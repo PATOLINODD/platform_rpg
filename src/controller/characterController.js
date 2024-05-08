@@ -38,8 +38,8 @@ class CharacterController extends AbstractController {
     try {
       const where = {
         name: login.name,
-        password: login.password
-      }
+        password: login.password,
+      };
       await this.getByWhere(where);
       if (!this.msg.error) {
         return this.msg;
@@ -51,7 +51,7 @@ class CharacterController extends AbstractController {
     return this.msg;
   };
   updateCharacterByID = async (data) => {
-    console.log("Entering in method updateCharacterByID(data, id)");
+    console.log("Entering in method updateCharacterByID(data)");
     try {
       await this.updateByID(data, data.id);
       if (!this.msg.error) {
@@ -59,6 +59,19 @@ class CharacterController extends AbstractController {
       }
     } catch (error) {
       console.error(this.msg);
+    }
+    return this.msg;
+  };
+
+  deleteCharacterByID = async (id) => {
+    console.log("Entering in method deleteCharacterByID(id)");
+    try {
+      await this.delete(id);
+      if (!this.msg.error) {
+        return this.msg;
+      }
+    } catch (error) {
+      console.error(error.message);
     }
     return this.msg;
   };

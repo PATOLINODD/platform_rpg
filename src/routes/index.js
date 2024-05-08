@@ -1,5 +1,5 @@
 const characterRoute = require("./character.js");
 
-module.exports = (wss) => {
-	characterRoute(wss);
+module.exports = (wss, app) => {
+	characterRoute(wss, app);
 }

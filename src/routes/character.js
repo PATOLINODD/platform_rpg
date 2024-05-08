@@ -1,37 +1,45 @@
 const { characterController } = require("../controller");
-module.exports = (wss) => {
-  wss.on("connection", async function connection(ws) {
-    ws.on("message", async function incoming(message) {
+module.exports = (io, app) => {
+  io.on("connection", async function connection(socket) {
+    socket.on("updateCharacter", async function incoming(message) {
       console.log("received: %s", message);
       try {
-		
         const msg = JSON.parse(message);
         let messageReturn = {};
 
-        switch (msg.path) {
-          case "/saveCharacter":
-            messageReturn = await characterController.saveCharacter(msg.data);
-            break;
-          case "/listCharacters":
-            messageReturn = await characterController.listCharacters();
-            break;
-          case "/getUserByNamePass":
-            messageReturn = await characterController.getUserByNamePass(
-              msg.data
-            );
-            break;
-          case "/updateCharacter":
-            messageReturn = await characterController.updateCharacterByID(
-              msg.data
-            );
-            break;
-        }
+        messageReturn = await characterController.updateCharacterByID(msg.data);
 
-        ws.send(JSON.stringify(messageReturn));
+        io.emit("updateCharacter", messageReturn);
       } catch (error) {
         console.error(error.message);
       }
     });
-    console.log("conectou!");
+  });
+
+  app.get("/listCharacters", async (req, res) => {
+    try {
+      const messageReturn = await characterController.listCharacters();
+      res.status(messageReturn.code).json(messageReturn);
+    } catch (error) {
+      console.error(error.message);
+    }
+  });
+
+  app.get("/getCharacter/:id", async (req, res) => {
+    try {
+      const messageReturn = await characterController.getByID(req.params.id);
+      res.status(messageReturn.code).json(messageReturn);
+    } catch (error) {
+      console.error(error.message);
+    }
+  });
+
+  app.post("/saveCharacter", async (req, res) => {
+    try {
+      const messageReturn = await characterController.saveCharacter(req.body);
+      res.status(messageReturn.code).json(messageReturn);
+    } catch (error) {
+      console.error(error.message);
+    }
   });
 };

@@ -1,16 +1,21 @@
-const WebSocket = require('ws');
+const express = require("express");
+const { createServer } = require("node:http");
+const { Server } = require("socket.io");
 const routes = require("./src/routes/index.js");
 const db = require("./connectDatabase.js");
 
-const wss = new WebSocket.Server({ port: 6969 });
+
+const app = express();
+const server = createServer(app);
+const io = new Server(server);
 
 
-routes(wss);
+
+routes(io, app);
 
 (async () => {
 	try {
 		await db.sync();
-		// await db.drop();
 		console.log('all tables was synchronized');
 	}
 	catch (error) {
@@ -20,3 +25,4 @@ routes(wss);
 
 db.authenticate();
 
+server.listen(3000, console.log("server is running at port 3000!"));
